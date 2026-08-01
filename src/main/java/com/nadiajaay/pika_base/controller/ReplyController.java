@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nadiajaay.pika_base.model.Reply;
 import com.nadiajaay.pika_base.service.ReplyService;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +32,7 @@ public class ReplyController {
     }
 
     @PostMapping("/discussions/{discussionId}/replies")
-    public ResponseEntity<Reply> addReply(@PathVariable ("discussionId") Long discussionId, @RequestBody Reply reply) {
+    public ResponseEntity<Reply> addReply(@PathVariable ("discussionId") Long discussionId, @Valid @RequestBody Reply reply) {
         Optional<Reply> replyToAdd = replyService.addReply(discussionId, reply);
         if (replyToAdd.isEmpty()) {
             return ResponseEntity.notFound().build();

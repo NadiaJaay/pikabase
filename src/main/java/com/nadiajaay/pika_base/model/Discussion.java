@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Discussion {
@@ -15,12 +16,15 @@ public class Discussion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long discussionId;
 
+    @NotBlank(message = "Title cannot be blank.")
     private String title;
 
+    @NotBlank(message = "Content cannot be blank.")
     private String content;
 
     private LocalDateTime createdDate;
 
+    @NotBlank(message = "Author name cannot be blank.")
     private String authorName;
     
     @ManyToOne

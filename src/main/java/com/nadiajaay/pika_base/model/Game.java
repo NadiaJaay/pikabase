@@ -8,6 +8,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Game {
@@ -15,8 +17,10 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long gameId;
 
+    @NotBlank(message = "Name cannot be blank.")
     private String name;
     
+    @NotNull(message = "Generation cannot be null.")
     @Enumerated(EnumType.STRING)
     private Generation generation; 
 

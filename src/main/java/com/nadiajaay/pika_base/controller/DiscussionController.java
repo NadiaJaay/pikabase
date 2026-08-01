@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nadiajaay.pika_base.model.Discussion;
 import com.nadiajaay.pika_base.service.DiscussionService;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -47,7 +49,7 @@ public class DiscussionController {
     }
 
     @PostMapping("/games/{gameId}/discussions")
-    public ResponseEntity<Discussion> addDiscussion(@PathVariable ("gameId") Long gameId, @RequestBody Discussion discussion) {
+    public ResponseEntity<Discussion> addDiscussion(@PathVariable ("gameId") Long gameId, @Valid @RequestBody Discussion discussion) {
         Optional<Discussion> discussionToAdd = discussionService.addDiscussion(gameId, discussion);
         if (discussionToAdd.isEmpty()) {
             return ResponseEntity.notFound().build();
