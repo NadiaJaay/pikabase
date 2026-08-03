@@ -1,23 +1,42 @@
 # PikaBase
 
 ## Project Overview
-PikaBase is a Spring Boot REST API for a Pokémon discussion forum focused on Generation I–IV games. Users can browse games, create discussions, and reply to existing discussions. The project demonstrates layered application architecture, RESTful API design, Spring Data JPA, and database integration using Hibernate and h2.
+PikaBase is a full-stack Spring Boot discussion forum for Pokémon games from Generation I–IV. The application allows users to browse games, create discussions, view discussion threads, and post replies.
 
 ## Features
-- Browse Pokémon games
-- View discussions for a game
-- Create discussions
-- View replies
-- Reply to discussions
+- Browse Pokémon games by generations
+- View the five most recent discussions on the homepage
+- Create new discussions
+- View discussion threads
+- Reply to dexisting iscussions
 - Seeded H2 database on application startup
+- Frontend integrated with Spring Boot REST API
 
 ## Tech Stack
-- Java
+- Java 21
 - Spring Boot
 - Spring Data JPA
 - Hibernate
 - H2 Database
 - Maven
+
+### Frontend
+- HTML
+- CSS
+- JavaScript
+
+## Architecture
+The application follows a layered architecture:
+
+Controller
+↓
+Service
+↓
+Repository
+↓
+H2 Database
+
+The frontend communicates with the backend through REST API endpoints using the Fetch API.
 
 ## API Endpoints
 | Method | Endpoint | Description |
@@ -25,6 +44,8 @@ PikaBase is a Spring Boot REST API for a Pokémon discussion forum focused on Ge
 | GET | `/games` | Get all games |
 | GET | `/games/{gameId}` | Get a game by ID |
 | GET | `/discussions` | Get all discussions |
+| GET | `/games/{gameId}/discussions` | Get discussions for a game |
+| GET | `/discussions/{discussionId}` | Get a discussion |
 | POST | `/games/{gameId}/discussions` | Create a discussion |
 | GET | `/discussions/{discussionId}/replies` | Get replies for a discussion |
 | POST | `/discussions/{discussionId}/replies` | Create a reply |
@@ -73,12 +94,17 @@ Use the following H2 connection settings:
 | Password | *(leave blank)* |
 
 ## Future Improvements
-- Input validation
-- Global exception handling
-- DTOs
-- PostgreSQL integration
-- Frontend
+- Replace H2 with MySQL or PostgreSQL
+- Edit and delete discussions
 - User authentication and authorization
+
+## What I Learned
+This project strengthened my understanding of:
+- Building layered Spring Boot applications
+- Designing RESTful APIs
+- Entity relationships using Spring Data JPA
+- Validation and global exception handling
+- Organizing a multi-page web application
 
 ## Author
 **Nadia Jujooste**
