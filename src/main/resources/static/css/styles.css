@@ -1,0 +1,353 @@
+/* ---------- General ---------- */
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url("/images/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+/* ---------- Navigation ---------- */
+
+.navbar {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 1;
+    background-color: #eda600;
+    font-size: 18px; 
+}
+
+.navbar > li {
+    position: relative;
+}
+
+.navbar li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 16px 20px;
+    text-decoration: none;
+}
+
+.navbar li a:hover {
+    background-color: #b17f00;
+}
+
+.make-bold {
+    font-weight: bold;
+    font-size: 19px; 
+}
+
+/* ---------- Dropdown ---------- */
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f0b51c;
+    min-width: 180px;
+}
+
+.dropdown-menu li a {
+    text-align: left;
+    white-space: nowrap;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* ---------- Main ---------- */
+
+main {
+    padding: 30px;
+}
+
+/* ---------- Welcome Section ---------- */
+
+.hero {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.hero h1 {
+    margin-top: 0;
+}
+
+/* ---------- Recent Discussions ---------- */
+
+.recent-discussions {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 5px solid #eda600;
+}
+
+#recent-discussion-list {
+    margin-top: 20px;
+}
+
+/* ---------- Discussion Cards ---------- */
+
+.recent-discussions {
+    background-color: rgba(255, 255, 255, 0.92);
+    padding: 25px;
+    border-radius: 8px;
+}
+
+.discussion-card {
+    background-color: #fff8eb;
+    border: 1px solid #f2d28a;
+    border-left: 5px solid #eda600;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.discussion-card:last-child {
+    margin-bottom: 0;
+}
+
+.discussion-card h3 {
+    margin: 0 0 8px;
+    font-size: 1.25rem;
+}
+
+.discussion-card p {
+    margin: 0;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.discussion-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.view-button {
+    background-color: #eda600;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 22px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.view-button:hover {
+    background-color: #b17f00;
+}
+
+/* ---------- Full Discussion ---------- */
+
+.discussion-full-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.discussion-full-card h1 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.discussion-full-card p:first-of-type {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.discussion-full-card p:last-of-type {
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.replies-section,
+.reply-form-section {
+    background-color: rgba(255, 255, 255, 0.95);
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.reply-card {
+    background-color: #fff8eb;
+    border: 1px solid #f2d28a;
+    border-left: 5px solid #eda600;
+    border-radius: 8px;
+    padding: 18px;
+    margin-bottom: 16px;
+}
+
+.reply-card p:first-child {
+    margin-top: 0;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.reply-card p:last-child {
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+.create-discussion-section {
+    display: none;
+    background-color: rgba(255,255,255,0.95);
+    max-width: 1000px;
+    margin: 25px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+/* ---------- Reply Form ---------- */
+
+.reply-form-section {
+    background-color: rgba(255, 255, 255, 0.95);
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+#reply-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#reply-form label {
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+#reply-form input,
+#reply-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #d6b45a;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: #fffdf7;
+}
+
+#reply-form textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+#reply-form input:focus,
+#reply-form textarea:focus {
+    outline: 2px solid #eda600;
+    border-color: #eda600;
+}
+
+#reply-form button {
+    align-self: flex-end;
+    margin-top: 12px;
+    background-color: #eda600;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#reply-form button:hover {
+    background-color: #b17f00;
+}
+
+
+.primary-button {
+    background-color: #eda600;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.primary-button:hover {
+    background-color: #b17f00;
+}
+
+/* ---------- Reusable Forum Forms ---------- */
+
+.forum-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.forum-form label {
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.forum-form input,
+.forum-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #d6b45a;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: #fffdf7;
+}
+
+.forum-form textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.forum-form input:focus,
+.forum-form textarea:focus {
+    outline: 2px solid #eda600;
+    border-color: #eda600;
+}
+
+.forum-form button {
+    align-self: flex-end;
+    margin-top: 12px;
+    background-color: #eda600;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.forum-form button:hover {
+    background-color: #b17f00;
+}
