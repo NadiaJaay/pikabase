@@ -20,10 +20,6 @@ public class DiscussionService {
         this.gameRepository = gameRepository;
     }
       
-
-    // TODO (V1 Improvement):
-    // Retrieve discussions ordered by createdDate descending
-    // for the homepage's "Recent Discussions" section.
     public List<Discussion> getAllDiscussions() {
         return discussionRepository.findAll();
     }
