@@ -9,15 +9,15 @@ PikaBase is a full-stack Spring Boot discussion forum for Pokémon games from Ge
 - Create new discussions
 - View discussion threads
 - Reply to dexisting iscussions
-- Seeded H2 database on application startup
-- Frontend integrated with Spring Boot REST API
+- Seeded database with sample Pokémon games- Frontend 
+- integrated with Spring Boot REST API
 
 ## Tech Stack
 - Java 21
 - Spring Boot
 - Spring Data JPA
 - Hibernate
-- H2 Database
+- MySQL
 - Maven
 
 ### Frontend
@@ -34,7 +34,7 @@ Service
 ↓
 Repository
 ↓
-H2 Database
+MySQL Database
 
 The frontend communicates with the backend through REST API endpoints using the Fetch API.
 
@@ -78,23 +78,10 @@ cd pika-base
 
 or run `PikaBaseApplication` from your IDE.
 
-### Accessing the Application
-
-Once the application is running:
-
-- **REST API:** http://localhost:8080
-- **H2 Console:** http://localhost:8080/h2-console
-
-Use the following H2 connection settings:
-
-| Property | Value |
-|----------|-------|
-| JDBC URL | `jdbc:h2:mem:pikabasedb` |
-| Username | `nj` |
-| Password | *(leave blank)* |
+### Database
+The application uses a local MySQL database named `pikabase`. Hibernate automatically creates the required tables on application startup.
 
 ## Future Improvements
-- Replace H2 with MySQL or PostgreSQL
 - Edit and delete discussions
 - User authentication and authorization
 
