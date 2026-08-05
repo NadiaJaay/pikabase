@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PikaBase | Login</title>
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+
+<body class="login-page">
+
+    <nav>
+        <ul class="navbar">
+            <li>
+                <a th:href="@{/}" class="make-bold">PikaBase</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="login-main">
+
+        <section class="login-card">
+            <h1>Log In to PikaBase</h1>
+
+            <p class="login-description">
+                Log in with one of the demo accounts to create discussions and replies.
+            </p>
+
+            <p class="login-error" th:if="${param.error}">
+                Incorrect username or password.
+            </p>
+
+            <p class="login-success" th:if="${param.logout}">
+                You have been logged out.
+            </p>
+
+            <form class="login-form" method="post" th:action="@{/login}">
+
+                <label for="username">Username</label>
+                <input
+                    id="username"
+                    type="text"
+                    name="username"
+                    placeholder="Enter your username"
+                    required
+                    autofocus
+                >
+
+                <label for="password">Password</label>
+                <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+                <button type="submit">
+                    Log In
+                </button>
+            </form>
+
+            <div class="demo-accounts">
+                <h2>Demo Accounts</h2>
+
+                <p>
+                    <strong>User:</strong>
+                    demo / pikabase
+                </p>
+
+                <p>
+                    <strong>User:</strong>
+                    demoTwo / pikabaseTwo
+                </p>
+
+                <p>
+                    <strong>Admin:</strong>
+                    admin / pikabaseadmin
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>

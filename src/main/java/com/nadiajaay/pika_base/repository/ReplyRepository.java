@@ -8,4 +8,5 @@ import com.nadiajaay.pika_base.model.Reply;
 
 public interface ReplyRepository extends JpaRepository<Reply, Long> {
     List<Reply> findByDiscussionDiscussionId(Long discussionId);
+    void deleteByDiscussionDiscussionId(Long discussionId);
 }

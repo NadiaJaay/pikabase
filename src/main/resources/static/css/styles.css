@@ -351,3 +351,53 @@ main {
 .forum-form button:hover {
     background-color: #b17f00;
 }
+
+.navbar-account {
+    margin-left: auto;
+}
+
+.navbar-account + .navbar-account {
+    margin-left: 0;
+}
+
+.user-status {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+}
+
+.navbar-link-button {
+    display: block;
+    padding: 16px 20px;
+    border: none;
+    background: transparent;
+    color: black;
+    font: inherit;
+    cursor: pointer;
+}
+
+.navbar-link-button:hover {
+    background-color: #b17f00;
+}
+
+.discussion-actions {
+    max-width: 1000px;
+    margin: -15px auto 30px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.delete-button {
+    background-color: #b3261e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 22px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #8f1d17;
+}

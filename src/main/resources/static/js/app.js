@@ -38,7 +38,7 @@ async function loadRecentDiscussions() {
         viewButton.classList.add("view-button");
 
         viewButton.addEventListener("click", () => {
-            window.location.href = `discussion.html?id=${discussion.discussionId}`;
+            window.location.href = `/discussion?id=${discussion.discussionId}`;
         });
 
         footer.appendChild(details);
