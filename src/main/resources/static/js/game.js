@@ -24,7 +24,8 @@ async function loadGameDiscussions() {
     const response = await fetch(`/games/${gameId}/discussions`);
 
     if (!response.ok) {
-        gameDiscussionList.textContent = "Discussions could not be loaded.";
+        gameDiscussionList.textContent =
+            "Discussions could not be loaded.";
         return;
     }
 
@@ -65,7 +66,7 @@ async function loadGameDiscussions() {
     
         viewButton.addEventListener("click", () => {
             window.location.href =
-                `/discussion.html?id=${discussion.discussionId}`;
+                `/discussion?id=${discussion.discussionId}`;
         });
     
         footer.appendChild(details);
@@ -80,40 +81,49 @@ async function loadGameDiscussions() {
     console.log(discussions);
 }
 
-createDiscussionButton.addEventListener("click", () => {
-    createDiscussionSection.style.display = "block";
-});
-
-discussionForm.addEventListener("submit", async event => {
-    event.preventDefault();
-
-    const title = document.getElementById("title").value;
-    const authorName = document.getElementById("authorName").value;
-    const content = document.getElementById("content").value;
-
-    const discussion = {
-        title: title,
-        authorName: authorName,
-        content: content
-    };
-    
-    const response = await fetch(`/games/${gameId}/discussions`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(discussion)
+if (createDiscussionButton) {
+    createDiscussionButton.addEventListener("click", () => {
+        createDiscussionSection.style.display = "block";
     });
-    
-    if (!response.ok) {
-        console.error("Discussion could not be created.");
-        return;
-    }
+}
 
-    discussionForm.reset();
-    createDiscussionSection.style.display = "none";
-    await loadGameDiscussions();
-});
+if (discussionForm) {
+    discussionForm.addEventListener("submit", async event => {
+        event.preventDefault();
+
+        const title = document.getElementById("title").value;
+        const authorName = document.getElementById("authorName").value;
+        const content = document.getElementById("content").value;
+
+        const discussion = {
+            title: title,
+            authorName: authorName,
+            content: content
+        };
+
+        const response = await fetch(`/games/${gameId}/discussions`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(discussion)
+        });
+
+        if (response.status === 401 || response.status === 403) {
+            window.location.href = "/login";
+            return;
+        }
+
+        if (!response.ok) {
+            console.error("Discussion could not be created.");
+            return;
+        }
+
+        discussionForm.reset();
+        createDiscussionSection.style.display = "none";
+        await loadGameDiscussions();
+    });
+}
 
 loadGame();
 loadGameDiscussions();

@@ -5,6 +5,42 @@ const discussionDetails = document.getElementById("discussion-details");
 const replyList = document.getElementById("reply-list");
 const replyForm = document.getElementById("reply-form");
 
+const deleteDiscussionButton = document.getElementById("delete-discussion-button");
+
+if (deleteDiscussionButton) {
+
+    deleteDiscussionButton.addEventListener("click", async () => {
+
+        const confirmed = confirm(
+            "Are you sure you want to delete this discussion?"
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
+        const response = await fetch(
+            `/discussions/${discussionId}`,
+            {
+                method: "DELETE"
+            }
+        );
+
+        if (response.status === 401 || response.status === 403) {
+            window.location.href = "/login";
+            return;
+        }
+
+        if (!response.ok) {
+            alert("Discussion could not be deleted.");
+            return;
+        }
+
+        window.location.href = "/";
+    });
+
+}
+
 async function loadDiscussion() {
     const response = await fetch(`/discussions/${discussionId}`);
 
@@ -87,36 +123,43 @@ async function loadReplies() {
     });
 }
 
-replyForm.addEventListener("submit", async event => {
-    event.preventDefault();
+if (replyForm) {
+    replyForm.addEventListener("submit", async event => {
+        event.preventDefault();
 
-    const authorName = document.getElementById("authorName").value;
-    const content = document.getElementById("content").value;
+        const authorName = document.getElementById("authorName").value;
+        const content = document.getElementById("content").value;
 
-    const reply = {
-        authorName: authorName,
-        content: content
-    };
+        const reply = {
+            authorName: authorName,
+            content: content
+        };
 
-    const response = await fetch(
-        `/discussions/${discussionId}/replies`,
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(reply)
+        const response = await fetch(
+            `/discussions/${discussionId}/replies`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(reply)
+            }
+        );
+
+        if (response.status === 401 || response.status === 403) {
+            window.location.href = "/login";
+            return;
         }
-    );
 
-    if (!response.ok) {
-        console.error("Reply could not be posted.");
-        return;
-    }
+        if (!response.ok) {
+            console.error("Reply could not be posted.");
+            return;
+        }
 
-    replyForm.reset();
-    await loadReplies();
-});
+        replyForm.reset();
+        await loadReplies();
+    });
+}
 
 loadDiscussion();
 loadReplies();

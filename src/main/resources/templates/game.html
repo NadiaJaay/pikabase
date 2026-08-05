@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PikaBase</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"></head>
+<body>
+
+    <nav>
+        <ul class="navbar">
+            <li>
+                <a href="/" class="make-bold">PikaBase</a>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">Gen I</a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/game(id=1)}">Pokémon Yellow</a></li>  
+                    <li><a th:href="@{/game(id=2)}">Pokémon Red</a></li>
+                    <li><a th:href="@{/game(id=3)}">Pokémon Blue</a></li> 
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">Gen II</a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/game(id=4)}">Pokémon Gold</a></li> 
+                    <li><a th:href="@{/game(id=5)}">Pokémon Silver</a></li> 
+                    <li><a th:href="@{/game(id=6)}">Pokémon Crystal</a></li> 
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">Gen III</a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/game(id=7)}">Pokémon Ruby</a></li> 
+                    <li><a th:href="@{/game(id=8)}">Pokémon Sapphire</a></li> 
+                    <li><a th:href="@{/game(id=11)}">Pokémon Emerald</a></li> 
+                    <li><a th:href="@{/game(id=9)}">Pokémon FireRed</a></li> 
+                    <li><a th:href="@{/game(id=10)}">Pokémon LeafGreen</a></li> 
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">Gen IV</a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/game(id=12)}">Pokémon Diamond</a></li> 
+                    <li><a th:href="@{/game(id=13)}">Pokémon Pearl</a></li> 
+                    <li><a th:href="@{/game(id=14)}">Pokémon Platinum</a></li> 
+                    <li><a th:href="@{/game(id=15)}">Pokémon HeartGold</a></li> 
+                    <li><a th:href="@{/game(id=16)}">Pokémon SoulSilver</a></li> 
+                </ul>
+            </li>
+
+            <li class="navbar-account" sec:authorize="isAnonymous()">
+                <a th:href="@{/login}">Log In</a>
+            </li>
+            
+            <li class="navbar-account user-status" sec:authorize="isAuthenticated()">
+                <span>
+                    Hello, <strong sec:authentication="name"></strong>
+                </span>
+            </li>
+            
+            <li class="navbar-account" sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="navbar-link-button">
+                        Log Out
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+    <section
+        id="create-discussion-section"
+        class="create-discussion-section"
+        sec:authorize="isAuthenticated()">
+        <h2>Start a New Discussion</h2>
+    
+        <form id="discussion-form" class="forum-form">
+            <label for="title">Title</label>
+            <input
+                type="text"
+                id="title"
+                name="title"
+                required
+            >
+    
+            <label for="authorName">Your Name</label>
+            <input
+                type="text"
+                id="authorName"
+                name="authorName"
+                required
+            >
+    
+            <label for="content">Discussion</label>
+            <textarea
+                id="content"
+                name="content"
+                rows="6"
+                required
+            ></textarea>
+    
+            <button type="submit">Create Discussion</button>
+        </form>
+    </section>
+    <main>
+        <section class="game-page-section">
+            <div class="game-page-header">
+                <h1 id="game-title">Game Discussions</h1>
+                <button
+                    id="create-discussion-button"
+                    class="primary-button"
+                    sec:authorize="isAuthenticated()">
+                    Start Discussion
+                </button>
+            </div>
+    
+            <div id="game-discussion-list">
+                <!-- game.js will insert discussions here -->
+            </div>
+        </section>
+    </main>
+    
+    <script th:src="@{/js/game.js}"></script>

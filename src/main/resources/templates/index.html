@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PikaBase</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+    <nav>
+        <ul class="navbar">
+            <li>
+                <a href="/" class="make-bold">PikaBase</a>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">Gen I</a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/game(id=1)}">Pokémon Yellow</a></li>  
+                    <li><a th:href="@{/game(id=2)}">Pokémon Red</a></li>
+                    <li><a th:href="@{/game(id=3)}">Pokémon Blue</a></li>        
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">Gen II</a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/game(id=4)}">Pokémon Gold</a></li> 
+                    <li><a th:href="@{/game(id=5)}">Pokémon Silver</a></li> 
+                    <li><a th:href="@{/game(id=6)}">Pokémon Crystal</a></li> 
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">Gen III</a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/game(id=7)}">Pokémon Ruby</a></li> 
+                    <li><a th:href="@{/game(id=8)}">Pokémon Sapphire</a></li> 
+                    <li><a th:href="@{/game(id=11)}">Pokémon Emerald</a></li> 
+                    <li><a th:href="@{/game(id=9)}">Pokémon FireRed</a></li> 
+                    <li><a th:href="@{/game(id=10)}">Pokémon LeafGreen</a></li> 
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">Gen IV</a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/game(id=12)}">Pokémon Diamond</a></li> 
+                    <li><a th:href="@{/game(id=13)}">Pokémon Pearl</a></li> 
+                    <li><a th:href="@{/game(id=14)}">Pokémon Platinum</a></li> 
+                    <li><a th:href="@{/game(id=15)}">Pokémon HeartGold</a></li> 
+                    <li><a th:href="@{/game(id=16)}">Pokémon SoulSilver</a></li> 
+                </ul>
+            </li>
+
+            <li class="navbar-account" sec:authorize="isAnonymous()">
+                <a th:href="@{/login}">Log In</a>
+            </li>
+            
+            <li class="navbar-account user-status" sec:authorize="isAuthenticated()">
+                <span>
+                    Hello, <strong sec:authentication="name"></strong>
+                </span>
+            </li>
+            
+            <li class="navbar-account" sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="navbar-link-button">
+                        Log Out
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <section class="hero">
+            <h1>Welcome to PikaBase</h1>
+            <p>
+                Browse and discuss your favourite Pokémon games from
+                Generation I through Generation IV.
+            </p>
+        </section>
+
+        <section class="recent-discussions">
+            <h2>Recent Discussions</h2>
+
+            <div id="recent-discussion-list">
+                <!-- JavaScript will insert the five most recent discussions here -->
+            </div>
+
+        </section>
+
+    </main>
+
+    <script th:src="@{/js/app.js}"></script>
+
+</body>
+</html>

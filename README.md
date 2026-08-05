@@ -8,22 +8,30 @@ PikaBase is a full-stack Spring Boot discussion forum for Pokémon games from Ge
 - View the five most recent discussions on the homepage
 - Create new discussions
 - View discussion threads
-- Reply to dexisting iscussions
+- Reply to existing iscussions
+- Role-based authentication using Spring Security
+- Guest users can browse discussions
+- Authenticated users can create discussions and replies
+- Admin users can delete discussions
 - Seeded database with sample Pokémon games- Frontend 
 - integrated with Spring Boot REST API
 
 ## Tech Stack
+### Backend
 - Java 21
 - Spring Boot
+- Spring MVC
+- Spring Security
 - Spring Data JPA
 - Hibernate
 - MySQL
 - Maven
 
 ### Frontend
+- Thymeleaf
 - HTML
 - CSS
-- JavaScript
+- JavaScript (Fetch API)
 
 ## Architecture
 The application follows a layered architecture:
@@ -49,6 +57,7 @@ The frontend communicates with the backend through REST API endpoints using the 
 | POST | `/games/{gameId}/discussions` | Create a discussion |
 | GET | `/discussions/{discussionId}/replies` | Get replies for a discussion |
 | POST | `/discussions/{discussionId}/replies` | Create a reply |
+| DELETE | `/discussions/{discussionId}` | Delete a discussion (Admin only) |
 
 ### Prerequisites
 
@@ -79,19 +88,25 @@ cd pika-base
 or run `PikaBaseApplication` from your IDE.
 
 ### Database
-The application uses a local MySQL database named `pikabase`. Hibernate automatically creates the required tables on application startup.
-
-## Future Improvements
-- Edit and delete discussions
-- User authentication and authorization
+The application uses a local MySQL database named `pikabase`. Hibernate automatically creates the required tables on application startup. Sample Pokémon game data is seeded automatically when the application starts.
 
 ## What I Learned
 This project strengthened my understanding of:
 - Building layered Spring Boot applications
 - Designing RESTful APIs
-- Entity relationships using Spring Data JPA
-- Validation and global exception handling
+- Entity relationships with Spring Data JPA
+- Spring Security authentication and authorization
+- Thymeleaf template rendering
+- Working with MySQL and Hibernate
+- Transaction management using `@Transactional`
 - Organizing a multi-page web application
+
+## Demo Accounts
+| Role | Username | Password |
+|------|----------|----------|
+| User | demo | pikabase |
+| User | demoTwo | pikabaseTwo |
+| Admin | admin | pikabaseadmin |
 
 ## Author
 **Nadia Jujooste**

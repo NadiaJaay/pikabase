@@ -9,17 +9,21 @@ import com.nadiajaay.pika_base.model.Discussion;
 import com.nadiajaay.pika_base.model.Game;
 import com.nadiajaay.pika_base.repository.DiscussionRepository;
 import com.nadiajaay.pika_base.repository.GameRepository;
-
+import com.nadiajaay.pika_base.repository.ReplyRepository;
+import org.springframework.transaction.annotation.Transactional;
 @Service
 public class DiscussionService {
     private final DiscussionRepository discussionRepository;
     private final GameRepository gameRepository;
+    private final ReplyRepository replyRepository;
 
-    public DiscussionService(DiscussionRepository discussionRepository, GameRepository gameRepository) {
+
+    public DiscussionService(DiscussionRepository discussionRepository, GameRepository gameRepository, ReplyRepository replyRepository) {
         this.discussionRepository = discussionRepository;
         this.gameRepository = gameRepository;
+        this.replyRepository = replyRepository;
     }
-      
+    
     public List<Discussion> getAllDiscussions() {
         return discussionRepository.findAll();
     }
@@ -44,13 +48,15 @@ public class DiscussionService {
         
     }
 
+    @Transactional
     public boolean deleteDiscussion(Long discussionId) {
         if (!discussionRepository.existsById(discussionId)) {
             return false;
         }
 
+        replyRepository.deleteByDiscussionDiscussionId(discussionId);
         discussionRepository.deleteById(discussionId);
+
         return true;
     }
-
 }
