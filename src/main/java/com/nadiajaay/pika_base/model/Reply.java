@@ -2,6 +2,7 @@ package com.nadiajaay.pika_base.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +18,7 @@ public class Reply {
     private Long replyId;
 
     @NotBlank(message = "Content cannot be blank.")
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     private LocalDateTime createdDate;
