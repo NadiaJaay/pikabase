@@ -1,20 +1,23 @@
 # PikaBase
 
 ## Project Overview
-PikaBase is a full-stack Spring Boot discussion forum for Pokémon games from Generation I–IV. The application allows users to browse games, create discussions, view discussion threads, and post replies.
+PikaBase is a full-stack Spring Boot discussion forum for Pokémon games from Generation I–IV. Users can browse games, create discussions, reply to discussions, and explore community conversations through a responsive web interface. The project demonstrates layered architecture, RESTful API design, Spring Security, Thymeleaf, and MySQL integration.
+
+## Live Demo
+https://pikabase-production.up.railway.app/
 
 ## Features
-- Browse Pokémon games by generations
+- Browse Pokémon games by generation
 - View the five most recent discussions on the homepage
 - Create new discussions
 - View discussion threads
-- Reply to existing iscussions
+- Reply to discussions
 - Role-based authentication using Spring Security
 - Guest users can browse discussions
 - Authenticated users can create discussions and replies
 - Admin users can delete discussions
-- Seeded database with sample Pokémon games- Frontend 
-- integrated with Spring Boot REST API
+- Seeded database with sample Pokémon games
+- Frontend integrated with the Spring Boot REST API
 
 ## Tech Stack
 ### Backend
@@ -36,15 +39,15 @@ PikaBase is a full-stack Spring Boot discussion forum for Pokémon games from Ge
 ## Architecture
 The application follows a layered architecture:
 
+```text
 Controller
-↓
+    ↓
 Service
-↓
+    ↓
 Repository
-↓
+    ↓
 MySQL Database
-
-The frontend communicates with the backend through REST API endpoints using the Fetch API.
+```
 
 ## API Endpoints
 | Method | Endpoint | Description |
@@ -60,13 +63,12 @@ The frontend communicates with the backend through REST API endpoints using the 
 | DELETE | `/discussions/{discussionId}` | Delete a discussion (Admin only) |
 
 ### Prerequisites
-
 - Java 21
 - Maven
 - Git
 
 ### Running the Application
-
+The application can be run locally or accessed through the live demo above.
 1. Clone the repository.
 
 ```bash
